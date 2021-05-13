@@ -10,12 +10,15 @@ class CheckPassword
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
+        if ($request->api_password !== env("API_PASSWORD",'CUb1zbMy27FVX95lAnKe5NjIKwGJGEzH36G')) {
+            return response()->json(['message' => 'Unauthenticated.']);
+        }
         return $next($request);
     }
 }

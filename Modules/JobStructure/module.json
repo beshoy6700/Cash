@@ -1,0 +1,13 @@
+{
+    "name": "JobStructure",
+    "alias": "jobstructure",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\JobStructure\\Providers\\JobStructureServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

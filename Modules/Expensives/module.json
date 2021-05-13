@@ -1,0 +1,13 @@
+{
+    "name": "Expensives",
+    "alias": "expensives",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Expensives\\Providers\\ExpensivesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

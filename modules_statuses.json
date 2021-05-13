@@ -1,0 +1,23 @@
+{
+    "Admin": true,
+    "Areas": true,
+    "Attributes": true,
+    "Banks": true,
+    "Churches": true,
+    "Cities": true,
+    "Companies": true,
+    "Countries": true,
+    "Employees": true,
+    "Expensives": true,
+    "Incomes": true,
+    "JobStructure": true,
+    "Roles": true,
+    "Safes": true,
+    "SocialStatus": true,
+    "States": true,
+    "Status": true,
+    "SubAreas": true,
+    "Traffic": true,
+    "Travels": true,
+    "Vehicles": true
+}

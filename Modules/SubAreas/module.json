@@ -1,0 +1,13 @@
+{
+    "name": "SubAreas",
+    "alias": "subareas",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SubAreas\\Providers\\SubAreasServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

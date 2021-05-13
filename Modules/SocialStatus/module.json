@@ -1,0 +1,13 @@
+{
+    "name": "SocialStatus",
+    "alias": "socialstatus",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SocialStatus\\Providers\\SocialStatusServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use Modules\Admin\Http\Controllers\Api\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['api','checkPassword'])->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1', 'middleware' => ['api','checkPassword','changeLanguage']], function () {
+    Route::post('/test', function (Request $request) {
+        return response()->json(['test']);
+    });
+    Route::group(['prefix' => 'admin'], function () {
+        Route::post('login', [AuthController::class,'login']);
 });
+
+});
+

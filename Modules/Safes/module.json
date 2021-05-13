@@ -1,0 +1,13 @@
+{
+    "name": "Safes",
+    "alias": "safes",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Safes\\Providers\\SafesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
