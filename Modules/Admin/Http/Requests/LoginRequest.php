@@ -14,7 +14,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
+            'email' => 'email|required|exists:admin,email',
             'password' => 'required'
         ];
     }
@@ -24,7 +24,8 @@ class LoginRequest extends FormRequest
         return [
             'email.required' => 'البريد الإلكتروني مطلوب.',
             'email.email' => 'ادخل عنوان بريد إلكتروني صالح.',
-            'password.required' =>''
+            'password.required' =>'',
+            'email.exists' => 'البريد الالكتروني او كلمة غير مطابقين'
         ];
     }
 

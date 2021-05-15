@@ -14,11 +14,14 @@ use Modules\Admin\Http\Controllers\Api\AuthController;
 |
 */
 
-Route::group(['prefix' => 'v1', 'middleware' => ['api','checkPassword','changeLanguage']], function () {
-    Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'v1/admin', 'middleware' => ['checkPassword','changeLanguage']], function () {
         Route::post('login', [AuthController::class,'login'])->name('admin.api.login');
-
-        Route::post('logout', [AuthController::class,'logout'])->middleware(['auth.guard:admin-api'])->name('admin.api.logout');
+        Route::group(['middleware' => ['auth.guard:admin-api']], function () {
+        Route::post('profile',function (){
+            //\Auth::user();
+            return auth()->user();
+        });
+            Route::post('logout', [AuthController::class,'logout'])->name('admin.api.logout');
     });
 });
 

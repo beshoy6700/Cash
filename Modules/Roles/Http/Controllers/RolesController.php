@@ -2,30 +2,61 @@
 
 namespace Modules\Roles\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
+use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Routing\Controller;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
 {
+    use GeneralTrait;
+
+    /**
+     * RolesController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth.guard:admin-api');
+    }
+
     /**
      * Display a listing of the resource.
-     * @return Renderable
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function getList(Request $request)
     {
-        return view('roles::index');
+        try {
+            $data = Role::select('name', 'guard_name')->with(['permissions' => function ($q) {
+                $q->select('name', 'guard_name');
+            }])->get();
+            if (!$data) {
+                return $this->returnError('E001', 'خطأ (E001) لا توجد بيانات');
+            }
+            return $this->returnData('roles', $data);
+        } catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
+
     }
 
     /**
      * Show the form for creating a new resource.
-     * @return Renderable
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function createRole(Request $request)
     {
-        return view('roles::create');
+        try {
+            // Create a manager role for users authenticating with the admin guard:
+            $role = Role::create([
+                'name' => $request->name,
+                'guard_name' => $request->guard_name
+            ]);
+            return $this->returnSuccessMessage('تم اضافة البيانات بنجاح');
+        } catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage($ex));
+        }
     }
 
     /**
@@ -33,10 +64,23 @@ class RolesController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function createPermission(Request $request)
     {
-        $role = Role::create(['name' => 'writer']);
-      //  $permission = Permission::create(['name' => 'edit articles']);
+        try {
+            $data = $request->all();
+            $model = Permission::create([
+                'name' => $data['name'],
+                'guard_name' => $data['guard_name']
+            ]);
+            for ($i = 0; $i < count($data['role']); $i++) {
+                $model->assignRole($data['role'][$i]);
+            }
+            return $this->returnSuccessMessage('تم اضافة البيانات بنجاح');
+        } catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage($ex));
+        }
+
+
     }
 
     /**

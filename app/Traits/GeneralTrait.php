@@ -10,21 +10,21 @@ trait GeneralTrait
         return app()->getLocale();
     }
 
-    public function returnError($errNum, $msg)
+    public function returnError($msgNum, $msg)
     {
         return response()->json([
             'status' => false,
-            'errNum' => $errNum,
+            'msgNum' => $msgNum,
             'msg' => $msg
         ]);
     }
 
 
-    public function returnSuccessMessage($msg = "", $errNum = "S000")
+    public function returnSuccessMessage($msg = "", $msgNum = "201")
     {
         return [
             'status' => true,
-            'errNum' => $errNum,
+            'msgNum' => $msgNum,
             'msg' => $msg
         ];
     }
@@ -33,7 +33,7 @@ trait GeneralTrait
     {
         return response()->json([
             'status' => true,
-            'errNum' => "S000",
+            'msgNum' => "201",
             'msg' => $msg,
             $key => $value
         ]);

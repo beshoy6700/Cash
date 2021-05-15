@@ -19,5 +19,7 @@
     "SubAreas": true,
     "Traffic": true,
     "Travels": true,
-    "Vehicles": true
+    "Vehicles": true,
+    "Users": true,
+    "Supports": true
 }

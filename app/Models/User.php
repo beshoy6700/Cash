@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable,FormAccessible, LogsActivity;
+    use HasRoles, HasFactory, Notifiable, FormAccessible, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -35,10 +36,11 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'remember_token',
     ];
+
     /**
      * Get the user's date of birth.
      *
-     * @param  string  $value
+     * @param string $value
      * @return string
      */
     public function getDateOfBirthAttribute($value)
@@ -49,13 +51,14 @@ class User extends Authenticatable implements JWTSubject
     /**
      * Get the user's date of birth for forms.
      *
-     * @param  string  $value
+     * @param string $value
      * @return string
      */
     public function formDateOfBirthAttribute($value)
     {
         return Carbon::parse($value)->format('Y-m-d');
     }
+
     /**
      * The attributes that should be cast to native types.
      *

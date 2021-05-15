@@ -3,7 +3,6 @@
 namespace Modules\Admin\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
