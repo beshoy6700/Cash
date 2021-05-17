@@ -14,10 +14,23 @@ use Modules\Roles\Http\Controllers\RolesController;
 |
 */
 
+
 Route::group(['prefix' => 'v1/admin', 'middleware' => ['api', 'checkPassword', 'changeLanguage']], function () {
+
+    /**
+     *  Roles Route Api
+     */
     Route::group(['prefix' => 'roles', 'middleware' => ['auth.guard:admin-api']], function () {
         Route::get('list', [RolesController::class, 'getList'])->name('roles.api.list');
-        Route::post('create-role', [RolesController::class, 'createRole'])->name('roles.api.createRole');
-        Route::post('create-permission', [RolesController::class, 'createPermission'])->name('roles.api.createPermission');
+        Route::post('create', [RolesController::class, 'createRole'])->name('roles.api.createRole');
+    });
+
+    /**
+     *  Permissions Route Api
+     */
+    Route::group(['prefix' => 'permissions', 'middleware' => ['auth.guard:admin-api']], function () {
+        Route::get('list', [RolesController::class, 'getListPermissions'])->name('permissions.api.list');
+        Route::post('create', [RolesController::class, 'createPermission'])->name('permissions.api.createPermission');
+        Route::post('assign-permission', [RolesController::class, 'assignPermission'])->name('permissions.api.assignPermission');
     });
 });
