@@ -22,25 +22,24 @@ class CountryRequest extends FormRequest
                 return [];
             }
             case 'POST':
-            {    //  'name','slug','lat','long','active','admin_id'
+            {    //  'name','slug','lat','long','status','admin_id'
                 return [
                     'name' => 'required|string|max:150|unique:countries,name',
                     'slug' => 'required|string|unique:countries,slug',
                     'lat' => 'nullable|string',
                     'long' => 'nullable|string',
-                    'active' => 'required|in:0,1',
-                    //  'church_id'=> 'required|exists:churches,id'
+                    'status' => 'required|in:0,1',
                 ];
             }
             case 'PUT':
             case 'PATCH':
             {
                 return [
-                    'name' => 'required|string|max:150|unique:countries,name,'. $data->id,
-                    'slug' => 'required|string|unique:countries,slug,'. $data->id,
+                    'name' => 'required|string|max:150|unique:countries,name,' . $data->id,
+                    'slug' => 'required|string|unique:countries,slug,' . $data->id,
                     'lat' => 'nullable|string',
                     'long' => 'nullable|string',
-                    'active' => 'nullable|in:0,1',
+                    'status' => 'nullable|in:0,1',
                 ];
 
             }
@@ -70,7 +69,7 @@ class CountryRequest extends FormRequest
         $input['slug'] = filter_var($input['slug'], FILTER_SANITIZE_STRING);
         $input['lat'] = filter_var($input['lat'], FILTER_SANITIZE_STRING);
         $input['long'] = filter_var($input['long'], FILTER_SANITIZE_STRING);
-        $input['active'] = filter_var($input['active'], FILTER_SANITIZE_NUMBER_INT);
+        $input['status'] = filter_var($input['status'], FILTER_SANITIZE_NUMBER_INT);
         $this->replace($input);
     }
 

@@ -2,7 +2,6 @@
 
 namespace Modules\Countries\Entities;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -17,13 +16,13 @@ class Country extends Model
 
     protected $table = 'countries';
     protected $fillable = [
-        'name', 'slug', 'lat', 'long', 'active', 'user_id'
+        'name', 'slug', 'lat', 'long', 'status', 'admin_id'
     ];
     protected $dates = ['deleted_at'];
     // column to hidden in query
     protected $hidden = [];
     // attributes will save when updated
-    protected static $logAttributes = ['name', 'slug', 'lat', 'long', 'active', 'user_id'];
+    protected static $logAttributes = ['name', 'slug', 'lat', 'long', 'status', 'admin_id'];
     protected static $logOnlyDirty = true;
     //only the `updated` and `deleted` event will get logged automatically
     protected static $recordEvents = ['updated', 'deleted'];
@@ -41,9 +40,9 @@ class Country extends Model
      * @param $query
      * @return mixed
      */
-    public function scopeActive($query)
+    public function scopeStatus($query)
     {
-        return $query->where('active', 1);
+        return $query->where('status', 1);
     }
 
     /**
@@ -52,24 +51,24 @@ class Country extends Model
      */
     public function scopeSelection($query)
     {
-        return $query->select('id', 'name', 'slug', 'lat', 'long', 'active', 'user_id');
+        return $query->select('id', 'name', 'slug', 'lat', 'long', 'status', 'admin_id');
     }
 
     /**
      * @return string
      */
-    public function getActive()
+    public function getStatus()
     {
-        return $this->active == 1 ? 'مفعل' : 'الغاء التفعيل';
+        return $this->status == 1 ? 'مفعل' : 'الغاء التفعيل';
     }
     ##### Relations #######
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function admin()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Admin::class);
     }
 
     /**

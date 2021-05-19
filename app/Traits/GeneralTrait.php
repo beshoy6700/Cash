@@ -54,6 +54,19 @@ trait GeneralTrait
         return $code;
     }
 
+    /**
+     * @param $request
+     * @param string $column
+     */
+    public function statusRequest($request, $column = 'active')
+    {
+        if ($request->has($column)) {
+            $request->request->add([$column => 1]);
+        } else {
+            $request->request->add([$column => 0]);
+        }
+    }
+
     public function getErrorCode($input)
     {
         if ($input == "name")

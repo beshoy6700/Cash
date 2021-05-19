@@ -19,9 +19,9 @@ class CreateCountriesTable extends Migration
             $table->string('slug')->nullable();
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
-            $table->boolean('active')->default(1)->comment('1 in active 0 not active');
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->boolean('status')->default(1)->comment('1 in active 0 not active');
+            $table->bigInteger('admin_id')->unsigned();
+            $table->foreign('admin_id')->references('id')->on('admins');
             $table->timestamps();
             $table->softDeletes();
         });

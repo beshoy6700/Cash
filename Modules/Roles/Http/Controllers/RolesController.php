@@ -28,9 +28,7 @@ class RolesController extends Controller
     public function getList(Request $request)
     {
         try {
-            $data = Role::select('name', 'guard_name')->with(['permissions' => function ($q) {
-                $q->select('name', 'guard_name');
-            }])->get();
+            $data = Role::select('id','name', 'guard_name')->with(['permissions'])->get();
             if (!$data) {
                 return $this->returnError('E001', 'خطأ (E001) لا توجد بيانات');
             }
@@ -55,7 +53,7 @@ class RolesController extends Controller
             ]);
             return $this->returnSuccessMessage('تم اضافة البيانات بنجاح');
         } catch (\Exception $ex) {
-            return $this->returnError($ex->getCode(), $ex->getMessage($ex));
+            return $this->returnError($ex->getCode(), $ex->getMessage());
         }
     }
 
@@ -72,10 +70,14 @@ class RolesController extends Controller
                 'name' => $data['name'],
                 'guard_name' => $data['guard_name']
             ]);
-            $model->assignRole($data['role']);
-            /* for ($i = 0; $i < count($data['role']); $i++) {
-                 $model->assignRole($data['role'][$i]);
-             }*/
+            if (is_array($data['role'])) {
+                for ($i = 0; $i < count($data['role']); $i++) {
+                    $model->assignRole($data['role'][$i]);
+                }
+            } else {
+                $model->assignRole($data['role']);
+            }
+
             return $this->returnSuccessMessage('تم اضافة البيانات بنجاح');
         } catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
@@ -89,8 +91,15 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-
-        return view('roles::show');
+        try {
+            $data = Role::where('id', $id)->with(['permissions'])->first();
+            if (!$data) {
+                return $this->returnError('E001', 'خطأ (E001) لا توجد بيانات');
+            }
+            return $this->returnData('role', $data);
+        } catch (\Exception $ex) {
+            return $this->returnError($ex->getCode(), $ex->getMessage());
+        }
     }
 
     /**
@@ -113,6 +122,7 @@ class RolesController extends Controller
     {
         //
     }
+
     /**
      * @param Request $request
      * @return array
@@ -129,6 +139,7 @@ class RolesController extends Controller
         }
 
     }
+
     /**
      * @param Request $request
      * @return array

@@ -23,6 +23,7 @@ Route::group(['prefix' => 'v1/admin', 'middleware' => ['api', 'checkPassword', '
     Route::group(['prefix' => 'roles', 'middleware' => ['auth.guard:admin-api']], function () {
         Route::get('list', [RolesController::class, 'getList'])->name('roles.api.list');
         Route::post('create', [RolesController::class, 'createRole'])->name('roles.api.createRole');
+        Route::get('show/{id}', [RolesController::class, 'show'])->name('roles.api.show');
     });
 
     /**
