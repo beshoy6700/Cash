@@ -14,6 +14,7 @@ class CountryRequest extends FormRequest
      */
     public function rules()
     {
+
         $data = Country::find($this->id);
         switch ($this->method()) {
             case 'GET':
@@ -81,5 +82,6 @@ class CountryRequest extends FormRequest
     public function authorize()
     {
         return true;
+        //return $this->user()->can('create.countries');
     }
 }

@@ -54,9 +54,10 @@ class CountriesController extends Controller
             $admin_id = auth()->user()->id;
             $input = $request->all();
             $input['admin_id'] = $admin_id;
-           // dd($input);
-            Country::create($input);
-            return $this->returnSuccessMessage('تم اضافة البيانات بنجاح');
+     /*       $validated = $request->validated();
+            return $validated;*/
+             $country = Country::create($input);
+            return $this->returnData($country);
         } catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }

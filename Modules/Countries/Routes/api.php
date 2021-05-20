@@ -25,6 +25,5 @@ Route::group(['prefix' => 'v1/admin', 'middleware' => ['api', 'checkPassword', '
         Route::delete('/delete/{id}', [CountriesController::class, 'destroy'])->name('admin.api.countries.destroy');
         Route::delete('/force-delete/{id}', [CountriesController::class, 'forceDeleted'])->name('admin.api.countries.delete');
         Route::get('/change-status/{id}', [CountriesController::class, 'ChangeStatus'])->name('admin.api.countries.status');
-
     });
 });
