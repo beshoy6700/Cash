@@ -34,7 +34,9 @@ class CountriesController extends Controller
     public function getList()
     {
         try {
-            $data = Country::selection()->orderBy('id', 'DESC')->get();
+            $data = Country::selection()->orderBy('id', 'DESC')->query()->get();
+            $data['active'] = $data->active();
+            // $data = Country::selection()->orderBy('id', 'DESC')->get();
             if (!$data) {
                 return $this->returnError('E001', 'خطأ (E001) لا توجد بيانات');
             }
@@ -54,9 +56,9 @@ class CountriesController extends Controller
             $admin_id = auth()->user()->id;
             $input = $request->all();
             $input['admin_id'] = $admin_id;
-     /*       $validated = $request->validated();
-            return $validated;*/
-             $country = Country::create($input);
+            /*       $validated = $request->validated();
+                   return $validated;*/
+            $country = Country::create($input);
             return $this->returnData($country);
         } catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());

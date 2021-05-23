@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Modules\Admin\Entities\Admin;
 use Modules\Cities\Entities\City;
 use Modules\Countries\Entities\Country;
 use Modules\States\Observers\StateObserver;
@@ -16,11 +17,11 @@ class State extends Model
     use SoftDeletes, Notifiable, LogsActivity;
     protected $table = 'states';
     protected $fillable = [
-        'name','slug','lat','long','active','country_id','user_id'
+        'name','slug','lat','long','active','country_id','admin_id'
     ];
     protected $dates = ['deleted_at'];
     protected $hidden = [];
-    protected static $logAttributes =[ 'name','slug','lat','long','active','country_id','user_id'];
+    protected static $logAttributes =[ 'name','slug','lat','long','active','country_id','admin_id'];
     protected static $logOnlyDirty = true;
     //only the `updated` and `deleted` event will get logged automatically
     protected static $recordEvents = ['updated','deleted'];
@@ -40,7 +41,7 @@ class State extends Model
 
     public function scopeSelection($query)
     {
-        return $query->select('id', 'name','slug','lat','long','active','country_id','user_id');
+        return $query->select('id', 'name','slug','lat','long','active','country_id','admin_id');
     }
 
     public function getActive()
@@ -52,9 +53,9 @@ class State extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function admin()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Admin::class);
     }
 
     /**

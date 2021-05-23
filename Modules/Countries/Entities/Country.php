@@ -5,7 +5,9 @@ namespace Modules\Countries\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Modules\Admin\Entities\Admin;
+use Modules\Countries\Collection\CountryCollection;
 use Modules\Countries\Observers\CountryObserver;
 use Modules\States\Entities\State;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -35,6 +37,16 @@ class Country extends Model
         Country::observe(CountryObserver::class);
     }
     ##### Scope #######
+    /**
+     * Create a new Eloquent Collection instance.
+     *
+     * @param  array  $models
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function newCollection(array $models = [])
+    {
+        return new CountryCollection($models);
+    }
 
     /**
      * @param $query

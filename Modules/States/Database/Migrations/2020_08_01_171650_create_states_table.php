@@ -22,8 +22,8 @@ class CreateStatesTable extends Migration
             $table->boolean('active')->default(1)->comment('1 in active 0 not active');
             $table->bigInteger('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade')->onUpdate('cascade');
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('admin_id')->unsigned();
+            $table->foreign('admin_id')->references('id')->on('admins');
             $table->timestamps();
             $table->softDeletes();
         });

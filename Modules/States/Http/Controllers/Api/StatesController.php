@@ -15,7 +15,6 @@ class StatesController extends Controller
 {
     use GeneralTrait;
 
-
     /**
      * StatesController constructor.
      */
@@ -26,7 +25,7 @@ class StatesController extends Controller
 
     /**
      * Display a listing of the resource.
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getList()
     {
@@ -58,7 +57,6 @@ class StatesController extends Controller
         }
 
     }
-
 
 
     /**
