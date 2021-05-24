@@ -23,10 +23,10 @@ class Admin extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email','image','password','created_at','updated_at'
+        'name','username' ,'email','image','password','created_at','updated_at'
     ];
 
-    protected static $logAttributes = ['name', 'email','image','password','updated_at'];
+    protected static $logAttributes = ['name','username', 'email','image','password','updated_at'];
     protected static $logOnlyDirty = true;
     //only the `updated` and `deleted` event will get logged automatically
     protected static $recordEvents = ['updated','deleted'];

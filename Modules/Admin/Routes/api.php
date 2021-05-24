@@ -13,8 +13,8 @@ use Modules\Admin\Http\Controllers\Api\AuthController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::group(['prefix' => 'v1/admin', 'middleware' => ['checkPassword','changeLanguage']], function () {
+//'middleware' => ['checkPassword','changeLanguage']
+Route::group(['prefix' => 'v1/admin'], function () {
         Route::post('login', [AuthController::class,'login'])->name('admin.api.login');
         Route::group(['middleware' => ['auth.guard:admin-api']], function () {
         Route::post('profile',function (){

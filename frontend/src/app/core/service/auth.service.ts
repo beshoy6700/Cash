@@ -22,10 +22,10 @@ export class AuthService {
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
-
+//authenticate
   login(username: string, password: string) {
     return this.http
-      .post<any>(`${environment.apiUrl}/authenticate`, {
+      .post<any>(`${environment.apiUrl}/admin/login`, {
         username,
         password,
       })
@@ -33,9 +33,10 @@ export class AuthService {
         map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
 
-          localStorage.setItem("currentUser", JSON.stringify(user));
-          this.currentUserSubject.next(user);
-          return user;
+          localStorage.setItem("currentUser", JSON.stringify(user.data));
+          this.currentUserSubject.next(user.data);
+          console.log(user.data);
+          return user.data;
         })
       );
   }
