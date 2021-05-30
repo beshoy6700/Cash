@@ -48,7 +48,8 @@ class AuthController extends Controller
             $admin->token = $token;
             $admin->role = 'Admin';
             //return token
-            return $this->returnData('data', $admin);
+            return response()->json($admin);
+         //   return $this->returnData('data', $admin);
         } catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }

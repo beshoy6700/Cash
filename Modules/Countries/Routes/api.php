@@ -13,10 +13,10 @@ use Modules\Countries\Http\Controllers\Api\CountriesController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::group(['prefix' => 'v1/admin', 'middleware' => ['api', 'checkPassword', 'changeLanguage']], function () {
+// 'checkPassword', 'changeLanguage'
+Route::group(['prefix' => 'v1/admin', 'middleware' => ['api']], function () {
     Route::group(['prefix' => 'countries', 'middleware' => ['auth.guard:admin-api']], function () {
-        Route::get('/list', [CountriesController::class, 'getList'])->name('admin.api.countries');
+        Route::post('/list', [CountriesController::class, 'getList'])->name('admin.api.countries');
         Route::get('/active-list', [CountriesController::class, 'activeList'])->name('admin.api.countries.activeList');
         Route::post('/create', [CountriesController::class, 'create'])->name('admin.api.countries.create');
         Route::get('/show/{id}', [CountriesController::class, 'show'])->name('admin.api.countries.show');

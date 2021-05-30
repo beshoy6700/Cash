@@ -34,7 +34,7 @@ class CountriesController extends Controller
     public function getList()
     {
         try {
-            $data = Country::selection()->orderBy('id', 'DESC')->query()->get();
+            $data = Country::selection()->orderBy('id', 'DESC')->get();
             $data['active'] = $data->active();
             // $data = Country::selection()->orderBy('id', 'DESC')->get();
             if (!$data) {

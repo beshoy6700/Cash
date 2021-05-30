@@ -14,7 +14,7 @@ use Modules\Admin\Http\Controllers\Api\AuthController;
 |
 */
 
-Route::group(['prefix' => 'v1', 'middleware' => ['api','checkPassword','changeLanguage']], function () {
+Route::group(['prefix' => 'v1', 'middleware' => ['api']], function () {
     Route::post('/test', function (Request $request) {
         return response()->json(['test']);
     });
