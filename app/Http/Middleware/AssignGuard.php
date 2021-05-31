@@ -25,8 +25,8 @@ class AssignGuard extends BaseMiddleware
         if ($guard != null) {
             auth()->shouldUse($guard); //shoud you user guard / table
             $token = $request->header('token');
-            $request->headers->set('token', (string)$token, true);
-            $request->headers->set('Authorization', 'Bearer ' . $token, true);
+           /* $request->headers->set('token', (string)$token, true);
+            $request->headers->set('Authorization', 'Bearer ' . $token, true);*/
             try {
                 //     $user = $this->auth->authenticate($request);  //check authenticted user
                 $user = JWTAuth::parseToken()->authenticate();
