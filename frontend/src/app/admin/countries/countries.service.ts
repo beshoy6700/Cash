@@ -15,22 +15,28 @@ export class CountriesService {
 // Temporarily stores data from dialogs
   dialogData: any;
 
+
   constructor(private httpClient: HttpClient) {
   }
+
+
 
   get data(): Countries[] {
     return this.dataChange.value;
   }
+
   getDialogData() {
     return this.dialogData;
   }
+
   getAllCountries() {
-    return this.httpClient.get<Countries[]>(this.API_URL).subscribe((data)=>{
-      this.isTblLoading = false;
-      this.dataChange.next(data);
+    return this.httpClient.get<Countries[]>(this.API_URL).subscribe((data) => {
+        this.isTblLoading = false;
+        this.dataChange.next(data);
       }
     );
   }
+
   addDoctors(countries: Countries): void {
     this.dialogData = countries;
 

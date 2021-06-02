@@ -23,24 +23,12 @@
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
           <div class="body">
-            <div class="table-responsive">
-              <div class="materialTableHeader">
-                <div class="row">
-                  <div class="col-8">
-
-                  </div>
-                  <div class="col-4">
-                    <ul class="header-buttons">
+            <ngx-datatable class="material"
+                           [rows]="rows" [columns]="columns" [sortType]="'multi'" [columnMode]="'force'"
+                           [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [limit]="10">
+            </ngx-datatable>
 
 
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-
-
-            </div>
           </div>
         </div>
       </div>

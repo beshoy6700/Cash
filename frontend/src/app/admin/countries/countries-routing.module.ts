@@ -6,7 +6,7 @@ import {EditCountryComponent} from "./edit-country/edit-country.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'allCountries',
     component: AllCountriesComponent
   },
   {

@@ -136,8 +136,8 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: "",
-    title: "المحافظات والمدن والمناطق",
-    moduleName: "doctors",
+    title: "الدول والمحافظات",
+    moduleName: "countries",
     iconType: "material-icons-two-tone",
     icon: "supervised_user_circle",
     class: "menu-toggle",
@@ -147,9 +147,9 @@ export const ROUTES: RouteInfo[] = [
     role: ["Admin"],
     submenu: [
       {
-        path: "/admin/doctors/allDoctors",
-        title: "MENUITEMS.DOCTORS.LIST.ALL-DOCTOR",
-        moduleName: "doctors",
+        path: "/admin/countries/allCountries",
+        title: "قائمة الدول",
+        moduleName: "countries",
         iconType: "",
         icon: "",
         class: "ml-menu",
@@ -161,7 +161,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: "/admin/doctors/add-doctor",
-        title: "MENUITEMS.DOCTORS.LIST.ADD-DOCTOR",
+        title: "قائمة المحافظات",
         moduleName: "doctors",
         iconType: "",
         icon: "",
@@ -174,7 +174,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: "/admin/doctors/edit-doctor",
-        title: "MENUITEMS.DOCTORS.LIST.EDIT-DOCTOR",
+        title: "قائمة المدن",
         moduleName: "doctors",
         iconType: "",
         icon: "",
@@ -187,7 +187,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: "/admin/doctors/doctor-profile",
-        title: "MENUITEMS.DOCTORS.LIST.PROFILE",
+        title: "قائمة المنطقة",
         moduleName: "doctors",
         iconType: "",
         icon: "",
@@ -280,7 +280,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [
       {
         path: "/admin/patients/all-patients",
-        title: "MENUITEMS.PATIENTS.LIST.ALL-PATIENT",
+        title: "قائمة الفروع",
         moduleName: "patients",
         iconType: "",
         icon: "",
