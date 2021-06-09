@@ -24,7 +24,7 @@ import {environment} from "../../../../environments/environment";
 })
 export class AllCountriesComponent implements OnInit {
   private readonly API_URL = `${environment.apiUrl}/admin/countries/list`;
-  countries: Countries | null;
+  countries: any[];
   rows = [];
   tableStyle = 'bootstrap';
   columns = [
@@ -34,11 +34,7 @@ export class AllCountriesComponent implements OnInit {
   ];
 
   constructor(public httpClient: HttpClient,
-              private service: CountriesService) {
-    this.fetch((data) => {
-     // this.rows = data;
-    });
-  }
+              private service: CountriesService) {}
 
   switchStyle() {
     if (this.tableStyle == 'dark') {
@@ -50,22 +46,20 @@ export class AllCountriesComponent implements OnInit {
   ngOnInit() {
     this.loadData();
   }
-  fetch(cb) {
-    const req = new XMLHttpRequest();
-    req.open('GET', 'assets/data/data.json');
-
-    req.onload = () => {
-      const data = JSON.parse(req.response);
-      cb(data);
-    };
-    req.send();
-  }
+// HBGC~-h}qiLB
   loadData() {
-    return this.httpClient.get<any>(this.API_URL).subscribe((data) => {
-      this.rows =data.countries;
+   this.service.getAll().subscribe((data) => {
+     this.countries = data.countries;
+      this.rows = this.countries;
       }
     );
   }
+onRemove(country)
+{
+/*  let index = this.countries.indexOf(country);
+  this.countries.splice(index,1);*/
+}
+
 }
 
 

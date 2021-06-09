@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {first} from "rxjs/operators";
 
 @Component({
   selector: 'app-add-country',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCountryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void {
+  register: FormGroup;
+  ngOnInit() {
+    this.register = this.fb.group({
+      first: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
+      last: [''],
+   //   termcondition: [false, [Validators.requiredTrue]],
+    })
+  }
+  onRegister(){
+    let first = this.register.get('first').value;
+  console.log(first);
   }
 
 }

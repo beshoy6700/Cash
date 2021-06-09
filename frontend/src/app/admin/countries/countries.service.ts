@@ -9,42 +9,17 @@ import {Countries} from "./countries.model";
   providedIn: 'root'
 })
 export class CountriesService {
-  private readonly API_URL = `${environment.apiUrl}/admin/countries/list`;
-  isTblLoading = true;
-  dataChange: BehaviorSubject<Countries[]> = new BehaviorSubject<Countries[]>([]);
-// Temporarily stores data from dialogs
-  dialogData: any;
-
+  private readonly API_URL = `${environment.apiUrl}/admin/countries/`;
 
   constructor(private httpClient: HttpClient) {
   }
 
-
-
-  get data(): Countries[] {
-    return this.dataChange.value;
+  getAll() {
+    return this.httpClient.get<any>(this.API_URL + 'list');
+    // return this.httpClient.get<Countries[]>(this.API_URL);
   }
 
-  getDialogData() {
-    return this.dialogData;
-  }
-
-  getAllCountries() {
-    return this.httpClient.get<Countries[]>(this.API_URL).subscribe((data) => {
-        this.isTblLoading = false;
-        this.dataChange.next(data);
-      }
-    );
-  }
-
-  addDoctors(countries: Countries): void {
-    this.dialogData = countries;
-
-    /*  this.httpClient.post(this.API_URL, doctors).subscribe(data => {
-      this.dialogData = doctors;
-      },
-      (err: HttpErrorResponse) => {
-     // error code here
-    });*/
+  create(country) {
+    return this.httpClient.post(this.API_URL+'create', country);
   }
 }
