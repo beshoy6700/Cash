@@ -37,6 +37,7 @@ class CountriesController extends Controller
             $data = Country::selection()->orderBy('id', 'DESC')->get();
         //    $data['active'] = $data->active();
             // $data = Country::selection()->orderBy('id', 'DESC')->get();
+
             if (!$data) {
                 return $this->returnError('E001', 'خطأ (E001) لا توجد بيانات');
             }

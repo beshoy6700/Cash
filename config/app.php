@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-        'TymonJWTAuthProvidersJWTAuthServiceProvider',
+    //    'TymonJWTAuthProvidersJWTAuthServiceProvider::class',
         /*
          * Application Service Providers...
          */

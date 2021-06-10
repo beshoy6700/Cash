@@ -14,14 +14,16 @@ export class AddCountryComponent implements OnInit {
   register: FormGroup;
   ngOnInit() {
     this.register = this.fb.group({
-      first: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-      last: [''],
+      // Validators.pattern('[a-zA-Z]+')
+      name: ['', [Validators.required]],
+      slug: [''],
+      status:['']
    //   termcondition: [false, [Validators.requiredTrue]],
     })
   }
   onRegister(){
-    let first = this.register.get('first').value;
-  console.log(first);
+    let data = this.register.value;
+  console.log(data);
   }
 
 }
