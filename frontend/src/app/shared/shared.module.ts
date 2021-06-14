@@ -6,12 +6,14 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgxSpinnerModule } from "ngx-spinner";
 
 import { MaterialModule } from "./material.module";
+import {DynamicFormModule} from "./dynamic-form/dynamic-form.module";
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    DynamicFormModule,
     RouterModule,
     NgbModule,
     NgxSpinnerModule,
@@ -20,6 +22,7 @@ import { MaterialModule } from "./material.module";
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    DynamicFormModule,
     RouterModule,
     NgbModule,
     NgxSpinnerModule,

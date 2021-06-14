@@ -1,0 +1,8 @@
+<div
+  class="dynamic-field form-input"
+  [formGroup]="group">
+  <label>{{ config.label }}</label>
+  <angular-editor
+    [formControlName]="config.name"
+    [config]="editorConfig"></angular-editor>
+</div>

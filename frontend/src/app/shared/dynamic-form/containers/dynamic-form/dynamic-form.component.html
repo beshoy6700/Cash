@@ -1,0 +1,12 @@
+<form
+  class="form"
+  [formGroup]="form"
+  (submit)="handleSubmit($event)">
+  <ng-container
+    class="form-body"
+    *ngFor="let field of config;"
+    dynamicField
+    [config]="field"
+    [group]="form">
+  </ng-container>
+</form>

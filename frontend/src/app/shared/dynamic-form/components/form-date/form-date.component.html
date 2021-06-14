@@ -1,0 +1,10 @@
+<div
+  class="dynamic-field form-select form-group"
+  [formGroup]="group">
+  <label>{{ config.label }}</label>
+  <input
+    class="form-control round"
+    type="date"
+    [attr.placeholder]="config.placeholder"
+    [formControlName]="config.name">
+</div>

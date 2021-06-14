@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {first} from "rxjs/operators";
+import {CountriesService} from "../countries.service";
 
 @Component({
   selector: 'app-add-country',
@@ -8,8 +9,9 @@ import {first} from "rxjs/operators";
   styleUrls: ['./add-country.component.sass']
 })
 export class AddCountryComponent implements OnInit {
-
-  constructor(private fb: FormBuilder) { }
+  country: any[];
+  constructor(private fb: FormBuilder,
+              private service: CountriesService) { }
 
   register: FormGroup;
   ngOnInit() {
@@ -23,7 +25,12 @@ export class AddCountryComponent implements OnInit {
   }
   onRegister(){
     let data = this.register.value;
-  console.log(data);
+    this.service.create(data).subscribe((data) => {
+       console.log(data) ;
+      },(error)=>{
+      console.log(error);
+      }
+      )
   }
 
 }

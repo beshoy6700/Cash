@@ -1,0 +1,13 @@
+<div
+  class="dynamic-field form-group"
+  [formGroup]="group">
+  <label>{{ config.label }}</label>
+
+  <ng-select
+    [items]="config.items"
+    bindLabel="name"
+    bindValue="id"
+    placeholder="{{config.placeholder}}"
+    formControlName="{{config.name}}">
+  </ng-select>
+</div>

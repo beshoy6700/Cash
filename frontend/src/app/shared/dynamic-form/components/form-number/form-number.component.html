@@ -1,0 +1,11 @@
+<div
+  class="dynamic-field  form-group"
+  [formGroup]="group">
+  <label>{{ config.label }}</label>
+  <input
+    class="form-control round"
+    type="number"
+    step="any"
+    [attr.placeholder]="config.placeholder"
+    [formControlName]="config.name">
+</div>

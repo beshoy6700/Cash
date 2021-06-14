@@ -60,7 +60,7 @@ class CountriesController extends Controller
             /*       $validated = $request->validated();
                    return $validated;*/
             $country = Country::create($input);
-            return $this->returnData($country);
+            return $this->returnData('country',$country);
         } catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }

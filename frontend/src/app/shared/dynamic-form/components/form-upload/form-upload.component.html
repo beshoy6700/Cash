@@ -1,0 +1,13 @@
+<div
+  class="dynamic-field form-input"
+  [formGroup]="group">
+  <label>{{ config.label }}</label>
+  <input
+    type="hidden"
+    [formControlName]="config.name">
+
+  <angular-file-uploader
+    [config]="afuConfig"
+    (ApiResponse)="afterUpload($event)">
+  </angular-file-uploader>
+</div>
