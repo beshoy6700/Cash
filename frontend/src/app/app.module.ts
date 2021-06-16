@@ -30,6 +30,7 @@ import {
   HTTP_INTERCEPTORS,
   HttpClient,
 } from "@angular/common/http";
+import {SnotifyModule, SnotifyService, ToastDefaults} from "ng-snotify";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -57,6 +58,7 @@ export function createTranslateLoader(http: HttpClient): any {
     HttpClientModule,
     PerfectScrollbarModule,
     ClickOutsideModule,
+    SnotifyModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -77,7 +79,11 @@ export function createTranslateLoader(http: HttpClient): any {
     },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: 'SnotifyToastConfig',
+      useValue: ToastDefaults
+    },
     fakeBackendProvider,
+    SnotifyService
   ],
   entryComponents: [],
   bootstrap: [AppComponent],

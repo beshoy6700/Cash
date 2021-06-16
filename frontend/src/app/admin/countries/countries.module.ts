@@ -24,13 +24,16 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MaterialFileInputModule} from "ngx-material-file-input";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {SharedModule} from "../../shared/shared.module";
+import { CreateComponent } from './create/create.component';
 
 
 @NgModule({
   declarations: [
     AllCountriesComponent,
     AddCountryComponent,
-    EditCountryComponent
+    EditCountryComponent,
+    CreateComponent
   ],
   imports: [
     CommonModule,
@@ -54,6 +57,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatCheckboxModule,
     MaterialFileInputModule,
     MatProgressSpinnerModule,
+    SharedModule
   ],
   providers: [
     CountriesService
