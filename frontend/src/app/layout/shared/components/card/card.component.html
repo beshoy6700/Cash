@@ -1,0 +1,62 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style ">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">قائمة الدول</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+              <a routerLink="/admin/dashboard/main">
+                <i class="fas fa-home"></i> الرئيسية</a>
+            </li>
+            <!--<li class="breadcrumb-item bcrumb-2">
+              <a href="#" onClick="return false;">Doctors</a>
+            </li>
+            <li class="breadcrumb-item active">View</li>-->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        <div class="card" [ngClass]="cardClass" [@cardRemove]="cardRemove" #toAnimate animates animatesInitMode="show"
+             [animatesOnInit]="{useVisibility: false, disabled: true}">
+          <div class="card-header" *ngIf="!hidHeader" [ngClass]="headerClass">
+            <h5 *ngIf="!customHeader">{{ cardTitle }}</h5>
+            <div class="card-header-right" *ngIf="this.options && !customHeader">
+              <div class="btn-group card-option dropdown" ngbDropdown>
+                <button type="button" class="btn dropdown-toggle btn-icon" ngbDropdownToggle>
+                  <i class="feather icon-more-horizontal"></i>
+                </button>
+                <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+                  <li class="dropdown-item full-card" (click)="fullCardToggle(toAnimate, '', true)"><a
+                    href="javascript:"><span><i class="feather"
+                                                [ngClass]="fullIcon"></i> {{this.cardClass === 'full-card' ? 'Restore' : 'Maximize'}}</span></a>
+                  </li>
+                  <li class="dropdown-item minimize-card" (click)="collapsedCardToggle($event)"><a
+                    href="javascript:"><span><i class="feather"
+                                                [ngClass]="collapsedIcon"></i> {{this.collapsedCard === 'collapsed' ? 'Expanded' : 'Collapsed'}} </span>
+                    <span style="display:none"><i class="feather icon-plus"></i></span></a></li>
+                  <li class="dropdown-item reload-card" (click)="cardRefresh()"><a href="javascript:"><i
+                    class="feather icon-refresh-cw"></i> Reload</a></li>
+                  <li class="dropdown-item close-card" (click)="cardRemoveAction()"><a href="javascript:"><i
+                    class="feather icon-trash"></i> Remove</a></li>
+                </ul>
+              </div>
+            </div>
+            <ng-content *ngIf="customHeader" select=".app-card-header"></ng-content>
+          </div>
+          <div [@collapsedCard]="collapsedCard">
+            <div class="card-block" [ngClass]="blockClass">
+              <ng-content></ng-content>
+            </div>
+          </div>
+          <div class="card-loader" *ngIf="loadCard"><i class="pct-loader1 anim-rotate"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

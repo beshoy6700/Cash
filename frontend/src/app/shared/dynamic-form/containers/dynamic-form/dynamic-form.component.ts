@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {FormGroup, FormBuilder} from '@angular/forms';
 import {FieldConfig} from "../models/field-config.interface";
 
 
 @Component({
-  selector: 'app-dynamic-form',
+  exportAs: 'dynamicForm',
+  selector: 'dynamic-form',
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.sass']
 })
@@ -17,12 +18,24 @@ export class DynamicFormComponent implements OnChanges, OnInit {
 
   form: FormGroup;
 
-  get controls() { return this.config.filter(({type}) => type !== 'button'); }
-  get changes() { return this.form.valueChanges; }
-  get valid() { return this.form.valid; }
-  get value() { return this.form.value; }
+  get controls() {
+    return this.config.filter(({type}) => type !== 'button');
+  }
 
-  constructor(private fb: FormBuilder) {}
+  get changes() {
+    return this.form.valueChanges;
+  }
+
+  get valid() {
+    return this.form.valid;
+  }
+
+  get value() {
+    return this.form.value;
+  }
+
+  constructor(private fb: FormBuilder) {
+  }
 
   ngOnInit() {
     this.form = this.createGroup();
@@ -54,8 +67,8 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   }
 
   createControl(config: FieldConfig) {
-    const { disabled, validation, value } = config;
-    return this.fb.control({ disabled, value }, validation);
+    const {disabled, validation, value} = config;
+    return this.fb.control({disabled, value}, validation);
   }
 
   handleSubmit(event: Event) {
@@ -66,7 +79,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
 
   setDisabled(name: string, disable: boolean) {
     if (this.form.controls[name]) {
-      const method = disable ? 'disable': 'enable';
+      const method = disable ? 'disable' : 'enable';
       this.form.controls[name][method]();
       return;
     }

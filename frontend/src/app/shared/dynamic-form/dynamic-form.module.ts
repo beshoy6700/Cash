@@ -47,6 +47,25 @@ import {DynamicFieldDirective} from "./components/dynamic-field/dynamic-field.di
     AngularEditorModule,
     AngularFileUploaderModule
   ],
+  exports: [
+    DynamicFormComponent,
+    NgSelectModule
+  ],
+  entryComponents: [
+    FormButtonComponent,
+    FormInputComponent,
+    FormTextComponent,
+    FormSelectComponent,
+    FormPasswordComponent,
+    FormHiddenComponent,
+    FormMultiSelectComponent,
+    FormUploadComponent,
+    FormEditorComponent,
+    FormDateComponent,
+    FormEmailComponent,
+    FormNumberComponent
+
+  ]
 })
 export class DynamicFormModule {
 }

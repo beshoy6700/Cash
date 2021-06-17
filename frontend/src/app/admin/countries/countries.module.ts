@@ -26,6 +26,8 @@ import {MaterialFileInputModule} from "ngx-material-file-input";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {SharedModule} from "../../shared/shared.module";
 import { CreateComponent } from './create/create.component';
+import {CardModule} from "../../layout/shared/components/card/card.module";
+import {DynamicFormModule} from "../../shared/dynamic-form/dynamic-form.module";
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { CreateComponent } from './create/create.component';
     MatCheckboxModule,
     MaterialFileInputModule,
     MatProgressSpinnerModule,
-    SharedModule
+    SharedModule,
+    CardModule,
+    DynamicFormModule
   ],
   providers: [
     CountriesService

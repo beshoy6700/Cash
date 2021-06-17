@@ -37,6 +37,7 @@
             "styles": [
               "src/assets/scss/style.scss",
               "src/assets/scss/theme/all-themes.scss",
+              "src/assets/scss/theme/all-themes.scss",
               "src/styles.scss"
             ],
             "scripts": [
