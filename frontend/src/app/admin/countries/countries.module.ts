@@ -28,6 +28,7 @@ import {SharedModule} from "../../shared/shared.module";
 import { CreateComponent } from './create/create.component';
 import {CardModule} from "../../layout/shared/components/card/card.module";
 import {DynamicFormModule} from "../../shared/dynamic-form/dynamic-form.module";
+import {MatProgressButtonsModule} from "mat-progress-buttons";
 
 
 @NgModule({
@@ -59,9 +60,10 @@ import {DynamicFormModule} from "../../shared/dynamic-form/dynamic-form.module";
     MatCheckboxModule,
     MaterialFileInputModule,
     MatProgressSpinnerModule,
+    MatProgressButtonsModule,
     SharedModule,
     CardModule,
-    DynamicFormModule
+    DynamicFormModule,
   ],
   providers: [
     CountriesService

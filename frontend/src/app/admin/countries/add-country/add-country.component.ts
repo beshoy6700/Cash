@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {first} from "rxjs/operators";
 import {CountriesService} from "../countries.service";
+import {MatProgressButtonOptions} from "mat-progress-buttons";
 
 @Component({
   selector: 'app-add-country',
@@ -10,27 +11,56 @@ import {CountriesService} from "../countries.service";
 })
 export class AddCountryComponent implements OnInit {
   country: any[];
+
   constructor(private fb: FormBuilder,
-              private service: CountriesService) { }
+              private service: CountriesService) {
+  }
 
   register: FormGroup;
+  barButtonOptions: MatProgressButtonOptions = {
+    active: false,
+    text: "اضافة",
+    buttonColor: "primary",
+    barColor: "primary",
+    raised: true,
+    stroked: false,
+    mode: "indeterminate",
+    value: 0,
+    disabled: false,
+    fullWidth: false,
+    buttonIcon: {
+      fontIcon: "add",
+    },
+  };
+
   ngOnInit() {
     this.register = this.fb.group({
       // Validators.pattern('[a-zA-Z]+')
       name: ['', [Validators.required]],
       slug: [''],
-      status:['']
-   //   termcondition: [false, [Validators.requiredTrue]],
+      status: ['']
+      //   termcondition: [false, [Validators.requiredTrue]],
     })
   }
-  onRegister(){
+
+  someFunc2(): void {
+    this.barButtonOptions.active = true;
+    this.onRegister();
+    this.barButtonOptions.text = "جاري حفظ البيانات .....";
+    setTimeout(() => {
+      this.barButtonOptions.active = false;
+      this.barButtonOptions.text = "اضافة";
+    }, 3500);
+  }
+
+  onRegister() {
     let data = this.register.value;
-    this.service.create(data).subscribe((data) => {
-       console.log(data) ;
-      },(error)=>{
-      console.log(error);
+    this.service.create(data).toPromise().then((data) => {
+        console.log(data);
       }
-      )
+    ).catch(error => {
+      console.log(error);
+    });
   }
 
 }

@@ -42,12 +42,12 @@ export class ServerApiService {
   }
 
   public post<T>(path, data = Object()): Observable<any> {
-    this.spinnerService.show();
+  //  this.spinnerService.show();
     return this.http.post(this.getUrl(path), JSON.stringify(data), {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }).pipe(
       map((data: any) => {
-        this.spinnerService.hide();
+   //     this.spinnerService.hide();
         return data;
       }),
       catchError(this.handleError)
@@ -91,16 +91,24 @@ export class ServerApiService {
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
-      // client-side error
+      // In a real world app, we might use a remote logging infrastructure
+      // We'd also dig deeper into the error to get a better message
+      let errMsg =
+        (error.message) ? error.message :
+          error.status ? `${error.status} - ${error.statusText}` : error;
+      console.error(errMsg); // log to console instead
+      return throwError(errMsg);
+    }
+     /* // client-side error
       errorMessage = `Error: ${error.error.message}`;
       console.error('Client Side Error: ', error.error.message);
     } else {
       // server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-      console.error('Server Side Error: ', error);
+      errorMessage = `Error Code: ${error.status}\n Message: ${error.message}`;
+      console.error('Server Side Error: ', error.error.errors);
     }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
+    window.alert(error.error.errors);
+    return throwError(errorMessage);*/
   }
 
   private handleErrors(error: any) {
