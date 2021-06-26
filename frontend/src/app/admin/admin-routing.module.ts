@@ -1,5 +1,5 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import {NgModule} from "@angular/core";
+import {Routes, RouterModule} from "@angular/router";
 
 const routes: Routes = [
   {
@@ -8,9 +8,19 @@ const routes: Routes = [
       import("./dashboard/dashboard.module").then((m) => m.DashboardModule),
   },
   {
-    path: "countries",
+    path: "regions",
     loadChildren: () =>
-      import("./countries/countries.module").then((m) => m.CountriesModule),
+      import("./regions/regions.module").then((m) => m.RegionsModule),
+  },
+  {
+    path: "companies",
+    loadChildren: () =>
+      import("./companies/companies.module").then((m) => m.CompaniesModule),
+  },
+  {
+    path: "employees",
+    loadChildren: () =>
+      import("./employees/employees.module").then((m) => m.EmployeesModule),
   },
   {
     path: "appointment",
@@ -49,4 +59,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule {
+}

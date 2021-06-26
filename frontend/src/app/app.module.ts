@@ -31,6 +31,7 @@ import {
   HttpClient,
 } from "@angular/common/http";
 import {SnotifyModule, SnotifyService, ToastDefaults} from "ng-snotify";
+import {AgGridModule} from "ag-grid-angular";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -66,7 +67,7 @@ export function createTranslateLoader(http: HttpClient): any {
         deps: [HttpClient],
       },
     }),
-
+    AgGridModule.withComponents([]),
     // core & shared
     CoreModule,
     SharedModule,

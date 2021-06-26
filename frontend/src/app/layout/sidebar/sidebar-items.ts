@@ -147,7 +147,7 @@ export const ROUTES: RouteInfo[] = [
     role: ["Admin"],
     submenu: [
       {
-        path: "/admin/countries/allCountries",
+        path: "/admin/regions/countries/all-countries",
         title: "قائمة الدول",
         moduleName: "countries",
         iconType: "",
@@ -160,9 +160,9 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/admin/doctors/add-doctor",
+        path: "/admin/regions/states/all-states",
         title: "قائمة المحافظات",
-        moduleName: "doctors",
+        moduleName: "states",
         iconType: "",
         icon: "",
         class: "ml-menu",
@@ -173,9 +173,9 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/admin/doctors/edit-doctor",
+        path: "/admin/regions/cities/all-cities",
         title: "قائمة المدن",
-        moduleName: "doctors",
+        moduleName: "cities",
         iconType: "",
         icon: "",
         class: "ml-menu",
@@ -186,9 +186,9 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "/admin/doctors/doctor-profile",
+        path: "/admin/regions/areas/all-areas",
         title: "قائمة المنطقة",
-        moduleName: "doctors",
+        moduleName: "areas",
         iconType: "",
         icon: "",
         class: "ml-menu",

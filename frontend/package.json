@@ -41,6 +41,8 @@
     "@swimlane/ngx-datatable": "^19.0.0",
     "@types/d3-shape": "^2.0.0",
     "acorn": "^8.2.4",
+    "ag-grid-angular": "^25.3.0",
+    "ag-grid-community": "^25.3.0",
     "angular-file-uploader": "^7.0.3",
     "angular-gauge": "^4.0.0",
     "apexcharts": "^3.26.3",

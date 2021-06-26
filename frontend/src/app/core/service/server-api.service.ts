@@ -29,12 +29,12 @@ export class ServerApiService {
     let paramsBuilder: HttpParams = new HttpParams({
       fromObject: data
     });
-    this.spinnerService.show();
+   // this.spinnerService.show();
     return this.http.get(this.getUrl(path), {
       params: paramsBuilder
     }).pipe(
       map((data: any) => {
-        this.spinnerService.hide();
+      //  this.spinnerService.hide();
         return data;
       }),
       catchError(this.handleError)
@@ -88,17 +88,18 @@ export class ServerApiService {
     )
   }
 
-  private handleError(error: HttpErrorResponse) {
+  public handleError(error: Response) {
+    let errors = error;
     let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
+ //   if (error.error instanceof ErrorEvent) {
       // In a real world app, we might use a remote logging infrastructure
       // We'd also dig deeper into the error to get a better message
-      let errMsg =
+      /*let errMsg =
         (error.message) ? error.message :
-          error.status ? `${error.status} - ${error.statusText}` : error;
-      console.error(errMsg); // log to console instead
-      return throwError(errMsg);
-    }
+          error.status ? `${error.status} - ${error.statusText}` : error;*/
+      console.log( errors); // log to console instead
+      return throwError(errors);
+  //  }
      /* // client-side error
       errorMessage = `Error: ${error.error.message}`;
       console.error('Client Side Error: ', error.error.message);
