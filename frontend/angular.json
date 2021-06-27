@@ -31,7 +31,8 @@
               "dragula",
               "contra/emitter",
               "crossvent",
-              "apexcharts"
+              "apexcharts",
+              "lodash"
             ],
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [

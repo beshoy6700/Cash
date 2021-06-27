@@ -15,7 +15,7 @@ import {AnimationService, AnimatorModule} from "css-animator";
     CommonModule,
     CommonModule,
     NgbDropdownModule,
-    AnimatorModule
+    AnimatorModule,
   ],
   exports: [CardComponent],
   providers: [AnimationService]
