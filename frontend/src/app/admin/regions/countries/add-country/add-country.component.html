@@ -1,1 +1,85 @@
-<p>add-country works!</p>
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style ">
+            <li class="breadcrumb-item">
+              <h4 class="page-title ">اضافة دولة جديدة</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+              <a routerLink="/admin/dashboard/main">
+                <i class="fas fa-home"></i> الرئيسية</a>
+            </li>
+            <li class="breadcrumb-item bcrumb-2">
+              <a routerLink="/admin/regions/countries/all-countries" onClick="return false;">قائمة الدول</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Basic Validation -->
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong>إضافة </strong> دولة جديدة</h2>
+          </div>
+          <div class="body">
+            <form class="register-form m-4" [formGroup]="register" (ngSubmit)="onRegister()">
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>اسم الدولة</mat-label>
+                    <input matInput formControlName="name" required>
+                    <mat-icon matSuffix>face</mat-icon>
+                    <mat-error *ngIf="register.get('name').hasError('required')">
+                      اسم الدولة مطلوب
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Slug</mat-label>
+                    <input matInput formControlName="slug">
+                    <mat-icon matSuffix>face</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>الحالة</mat-label>
+                    <mat-select formControlName="status" required>
+                      <mat-option [value]="'0'">
+                        غير فعال
+                      </mat-option>
+                      <mat-option [value]="'1'">
+                        فعال
+                      </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>flag</mat-icon>
+                    <mat-error *ngIf="register.get('status').hasError('required')">
+                      لابد من اختيار الحالة
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <mat-bar-button [options]="barButtonOptions" (btnClick)="someFunc2()" [disabled]="!register.valid">
+                  </mat-bar-button>
+                  <button type="button" class="btn-danger" mat-button>الغاء</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #END# Basic Validation -->
+  </div>
+</section>
