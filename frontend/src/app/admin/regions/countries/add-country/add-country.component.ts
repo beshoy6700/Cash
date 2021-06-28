@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatProgressButtonOptions} from "mat-progress-buttons";
 import {CountriesService} from "../countries.service";
 import {ServerApiService} from "../../../../core/service/server-api.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-add-country',
@@ -32,7 +33,8 @@ export class AddCountryComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private services: CountriesService,
-              private serverApi: ServerApiService
+              private serverApi: ServerApiService,
+              private snackBar: MatSnackBar
   ) {
     this.register = this.fb.group({
       name: ["", [Validators.required]],
@@ -43,14 +45,18 @@ export class AddCountryComponent implements OnInit {
 
   onRegister() {
     console.log("Form Value", this.register.value);
-  }
 
+  }
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action);
+  }
   someFunc2(): void {
     this.barButtonOptions.active = true;
     this.barButtonOptions.text = "جاري حفظ البيانات ...";
     setTimeout(() => {
       this.barButtonOptions.active = false;
       this.barButtonOptions.text = "اضافة";
+      this.openSnackBar('تم اضافة البيانات بنجاح', 'Dance');
     }, 3500);
   }
 
