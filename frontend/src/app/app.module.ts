@@ -32,6 +32,7 @@ import {
 } from "@angular/common/http";
 import {SnotifyModule, SnotifyService, ToastDefaults} from "ng-snotify";
 import {AgGridModule} from "ag-grid-angular";
+import {AccordionModule} from "primeng/accordion";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -71,6 +72,7 @@ export function createTranslateLoader(http: HttpClient): any {
     // core & shared
     CoreModule,
     SharedModule,
+    AccordionModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
