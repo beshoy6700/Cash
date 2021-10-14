@@ -44,7 +44,12 @@ export class AddCountryComponent implements OnInit {
   }
 
   onRegister() {
-    console.log("Form Value", this.register.value);
+    this.services.create(this.register.value).subscribe(data=>{
+      console.log(data);
+    },error => {
+      console.log(error);
+    });
+  //  console.log("Form Value", this.register.value);
 
   }
   openSnackBar(message: string, action: string) {
@@ -53,6 +58,7 @@ export class AddCountryComponent implements OnInit {
   someFunc2(): void {
     this.barButtonOptions.active = true;
     this.barButtonOptions.text = "جاري حفظ البيانات ...";
+    this.services.create(this.register.value);
     setTimeout(() => {
       this.barButtonOptions.active = false;
       this.barButtonOptions.text = "اضافة";

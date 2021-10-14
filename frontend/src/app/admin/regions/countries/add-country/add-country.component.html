@@ -27,7 +27,8 @@
               <strong>إضافة </strong> دولة جديدة</h2>
           </div>
           <div class="body">
-            <form class="register-form m-4" [formGroup]="register" (ngSubmit)="onRegister()">
+<!--            <form class="register-form m-4" [formGroup]="register" (ngSubmit)="someFunc2()">-->
+            <form class="register-form m-4" [formGroup]="register" >
               <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width" appearance="outline">
@@ -70,7 +71,7 @@
 
               <div class="row">
                 <div class="col">
-                  <mat-bar-button [options]="barButtonOptions" (btnClick)="someFunc2()" [disabled]="!register.valid">
+                  <mat-bar-button [options]="barButtonOptions" (btnClick)="onRegister()" [disabled]="!register.valid">
                   </mat-bar-button>
                   <button type="button" class="btn-danger" mat-button>الغاء</button>
                 </div>

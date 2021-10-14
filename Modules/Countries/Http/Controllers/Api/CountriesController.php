@@ -57,8 +57,13 @@ class CountriesController extends Controller
             $admin_id = auth()->user()->id;
             $input = $request->all();
             $input['admin_id'] = $admin_id;
-            /*       $validated = $request->validated();
-                   return $validated;*/
+            $validated = $request->validate([
+                'name' => 'required|string|max:150|unique:countries,name',
+                'slug' => 'required|string|unique:countries,slug',
+                'lat' => 'nullable|string',
+                'long' => 'nullable|string',
+                'status' => 'required|in:0,1',
+            ]);
             $country = Country::create($input);
             return $this->returnData('country',$country);
         } catch (\Exception $ex) {

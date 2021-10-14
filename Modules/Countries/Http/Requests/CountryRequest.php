@@ -2,6 +2,8 @@
 
 namespace Modules\Countries\Http\Requests;
 
+
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Modules\Countries\Entities\Country;
 
@@ -14,7 +16,6 @@ class CountryRequest extends FormRequest
      */
     public function rules()
     {
-
         $data = Country::find($this->id);
         switch ($this->method()) {
             case 'GET':
@@ -83,5 +84,15 @@ class CountryRequest extends FormRequest
     {
         return true;
         //return $this->user()->can('create.countries');
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        $errors = $validator->errors(); // Here is your array of errors
+        $response = response()->json([
+            'message' => 'Invalid data send',
+            'details' => $errors->messages(),
+        ], 422);
+       // throw new HttpResponseException($response);
     }
 }
