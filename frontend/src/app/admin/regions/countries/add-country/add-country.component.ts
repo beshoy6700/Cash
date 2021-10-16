@@ -30,7 +30,11 @@ export class AddCountryComponent implements OnInit {
   hide = true;
   agree = false;
   customForm: FormGroup;
-
+  errors: [
+    name: string,
+    slug: string,
+    status: boolean
+  ]
   constructor(private fb: FormBuilder,
               private services: CountriesService,
               private serverApi: ServerApiService,
@@ -43,11 +47,13 @@ export class AddCountryComponent implements OnInit {
     });
   }
 
+
   onRegister() {
     this.services.create(this.register.value).subscribe(data=>{
       console.log(data);
     },error => {
-      console.log(error);
+    this.errors = error;
+    console.log(this.errors);
     });
   //  console.log("Form Value", this.register.value);
 

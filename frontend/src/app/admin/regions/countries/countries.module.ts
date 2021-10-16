@@ -30,6 +30,7 @@ import {DynamicFormModule} from "../../../shared/dynamic-form/dynamic-form.modul
 
 import {AgGridModule} from "ag-grid-angular";
 import {CountriesService} from "./countries.service";
+import {LazyLoadImageModule} from "ng-lazyload-image";
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import {CountriesService} from "./countries.service";
     SharedModule,
     CardModule,
     DynamicFormModule,
-    AgGridModule
+    AgGridModule,
+    LazyLoadImageModule
   ],
   providers: [
     CountriesService

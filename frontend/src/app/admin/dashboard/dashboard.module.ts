@@ -10,6 +10,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { NgApexchartsModule } from "ng-apexcharts";
+import {LazyLoadImageModule} from "ng-lazyload-image";
 
 @NgModule({
   declarations: [MainComponent, Dashboard2Component],
@@ -23,6 +24,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
     MatButtonModule,
     MatMenuModule,
     MatTooltipModule,
+    LazyLoadImageModule
   ],
 })
 export class DashboardModule {}

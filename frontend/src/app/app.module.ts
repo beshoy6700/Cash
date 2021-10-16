@@ -33,6 +33,7 @@ import {
 import {SnotifyModule, SnotifyService, ToastDefaults} from "ng-snotify";
 import {AgGridModule} from "ag-grid-angular";
 import {AccordionModule} from "primeng/accordion";
+import {LAZYLOAD_IMAGE_HOOKS, LazyLoadImageModule, ScrollHooks } from "ng-lazyload-image";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -69,6 +70,7 @@ export function createTranslateLoader(http: HttpClient): any {
       },
     }),
     AgGridModule.withComponents([]),
+    LazyLoadImageModule,
     // core & shared
     CoreModule,
     SharedModule,
@@ -80,6 +82,7 @@ export function createTranslateLoader(http: HttpClient): any {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
+    { provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: 'SnotifyToastConfig',

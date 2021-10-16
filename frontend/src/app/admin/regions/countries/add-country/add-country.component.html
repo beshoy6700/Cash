@@ -30,6 +30,9 @@
 <!--            <form class="register-form m-4" [formGroup]="register" (ngSubmit)="someFunc2()">-->
             <form class="register-form m-4" [formGroup]="register" >
               <div class="row">
+                {{errors | json}}
+                <img [lazyLoad]="'https://images.unsplash.com/photo-1422004707501-e8dad229e17a?fm=jpg'"  alt="">
+                <img [defaultImage]="'https://www.placecage.com/1000/1000'" [lazyLoad]="'https://images.unsplash.com/photo-1417128281290-30a42da46277?fm=jpg'"  alt="">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>اسم الدولة</mat-label>

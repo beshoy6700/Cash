@@ -36,6 +36,7 @@ export type ChartOptions = {
   styleUrls: ["./dashboard2.component.scss"],
 })
 export class Dashboard2Component implements OnInit {
+  image1= "assets/images/user/user6.jpg";
   public lineChartOptions: Partial<ChartOptions>;
   //  color: ["#3FA7DC", "#F6A025", "#9BC311"],
   // Doughnut chart start

@@ -7,6 +7,7 @@ use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Validator;
 use Modules\Countries\Entities\Country;
 use Modules\Countries\Http\Requests\CountryRequest;
 
@@ -57,15 +58,31 @@ class CountriesController extends Controller
             $admin_id = auth()->user()->id;
             $input = $request->all();
             $input['admin_id'] = $admin_id;
-            $validated = $request->validate([
+            /*$rules= [
                 'name' => 'required|string|max:150|unique:countries,name',
                 'slug' => 'required|string|unique:countries,slug',
                 'lat' => 'nullable|string',
                 'long' => 'nullable|string',
                 'status' => 'required|in:0,1',
-            ]);
+            ];
+            $Validator = Validator::make($request->all(),$rules);
+            if ($Validator->fails())
+            {
+                return \response()->json($Validator->errors(), 400);
+            }else{
+                $country = Country::create($input);
+                return $this->returnData('country',$country);
+            }*/
             $country = Country::create($input);
             return $this->returnData('country',$country);
+                /*$request->validate([
+                'name' => 'required|string|max:150|unique:countries,name',
+                'slug' => 'required|string|unique:countries,slug',
+                'lat' => 'nullable|string',
+                'long' => 'nullable|string',
+                'status' => 'required|in:0,1',
+            ]);*/
+
         } catch (\Exception $ex) {
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }

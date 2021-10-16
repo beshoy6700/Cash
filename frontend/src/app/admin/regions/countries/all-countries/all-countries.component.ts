@@ -55,6 +55,8 @@ private rowHeight;
     this.service.getAll().subscribe((data) => {
         this.rowData = data.countries;
         //  this.rows = this.countries;
+      },(error) =>{
+      console.log(error);
       }
     );
   }

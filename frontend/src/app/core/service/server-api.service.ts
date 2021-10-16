@@ -87,20 +87,37 @@ export class ServerApiService {
       catchError(this.handleError)
     )
   }
+  private handleError(error:Response) {
 
-  public handleError(error: Response) {
+    // let spinnerService = ServiceLocator.injector.get<Ng4LoadingSpinnerService>(Ng4LoadingSpinnerService);
+    //
+    // setTimeout(() => {
+    //   spinnerService.hide();
+    // }, 100);
+
+    // In a real world app, we might use a remote logging infrastructure
+    // We'd also dig deeper into the error to get a better message
+
+      let errMsg = (error) ? error :
+          error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+     // console.error(error); // log to console instead
+
+    let errors = error;
+    return throwError(errors);
+  }
+  /*public handlesError(error: Response) {
     let errors = error;
     let errorMessage = '';
- //   if (error.error instanceof ErrorEvent) {
+    if (error.errors instanceof ErrorEvent) {
       // In a real world app, we might use a remote logging infrastructure
       // We'd also dig deeper into the error to get a better message
-      /*let errMsg =
+     let errMsg =
         (error.message) ? error.message :
-          error.status ? `${error.status} - ${error.statusText}` : error;*/
-      console.log( errors); // log to console instead
+          error.status ? `${error.status} - ${error.statusText}` : error;
+      console.log( error.status); // log to console instead
       return throwError(errors);
   //  }
-     /* // client-side error
+     /!* // client-side error
       errorMessage = `Error: ${error.error.message}`;
       console.error('Client Side Error: ', error.error.message);
     } else {
@@ -109,7 +126,7 @@ export class ServerApiService {
       console.error('Server Side Error: ', error.error.errors);
     }
     window.alert(error.error.errors);
-    return throwError(errorMessage);*/
+    return throwError(errorMessage);*!/
   }
 
   private handleErrors(error: any) {
@@ -127,5 +144,5 @@ export class ServerApiService {
 
     return throwError(errMsg);
     //  return errMsg;
-  }
+  }*/
 }

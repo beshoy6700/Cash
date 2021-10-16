@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { EChartOption } from "echarts";
+import { EChartsOption } from "echarts";
 
 @Component({
   selector: "app-echart",
@@ -8,7 +8,7 @@ import { EChartOption } from "echarts";
 })
 export class EchartComponent {
   // line bar chart
-  line_bar_chart: EChartOption = {
+  line_bar_chart: EChartsOption = {
     grid: {
       top: "6",
       right: "0",
@@ -79,7 +79,7 @@ export class EchartComponent {
   };
 
   // line chart
-  line_chart: EChartOption = {
+  line_chart: EChartsOption = {
     grid: {
       top: "6",
       right: "0",
@@ -156,7 +156,7 @@ export class EchartComponent {
   };
 
   // bar chart
-  bar_chart: EChartOption = {
+  bar_chart: EChartsOption = {
     grid: {
       top: "6",
       right: "0",
@@ -201,7 +201,7 @@ export class EchartComponent {
   };
 
   // graph line chart
-  graph_line_chart: EChartOption = {
+  graph_line_chart: EChartsOption = {
     tooltip: {
       trigger: "axis",
     },
@@ -276,7 +276,7 @@ export class EchartComponent {
   };
 
   /* Pie Chart */
-  pie_chart: EChartOption = {
+  pie_chart: EChartsOption = {
     tooltip: {
       trigger: "item",
       formatter: "{a} <br/>{b} : {c} ({d}%)",
@@ -323,7 +323,7 @@ export class EchartComponent {
   };
 
   // area line chart
-  area_line_chart: EChartOption = {
+  area_line_chart: EChartsOption = {
     tooltip: {
       trigger: "axis",
     },
@@ -345,7 +345,8 @@ export class EchartComponent {
             stack: "Stack",
             tiled: "Tiled",
           },
-          type: ["line", "bar", "stack", "tiled"],
+        //  type: ["line", "bar", "stack", "tiled"],
+          type: ["line", "bar", "stack"],
         },
         restore: {
           show: !0,
@@ -383,11 +384,11 @@ export class EchartComponent {
         type: "line",
         smooth: !0,
         itemStyle: {
-          normal: {
+          /*normal: {
             areaStyle: {
               type: "default",
             },
-          },
+          },*/
         },
         data: [10, 12, 21, 54, 260, 830, 710],
       },
@@ -396,11 +397,11 @@ export class EchartComponent {
         type: "line",
         smooth: !0,
         itemStyle: {
-          normal: {
+        /*  normal: {
             areaStyle: {
               type: "default",
             },
-          },
+          },*/
         },
         data: [30, 182, 434, 791, 390, 30, 10],
       },
@@ -409,11 +410,11 @@ export class EchartComponent {
         type: "line",
         smooth: !0,
         itemStyle: {
-          normal: {
+         /* normal: {
             areaStyle: {
               type: "default",
             },
-          },
+          },*/
         },
         data: [1320, 1132, 601, 234, 120, 90, 20],
       },
@@ -422,7 +423,7 @@ export class EchartComponent {
   };
 
   // sonar chart
-  sonar_chart: EChartOption = {
+  sonar_chart: EChartsOption = {
     tooltip: {
       trigger: "item",
     },
@@ -448,7 +449,7 @@ export class EchartComponent {
     },
     polar: [
       {
-        indicator: [
+      /*  indicator: [
           {
             text: "Sales",
             max: 6e3,
@@ -473,7 +474,7 @@ export class EchartComponent {
             text: "Marketing",
             max: 25e3,
           },
-        ],
+        ],*/
       },
     ],
     series: [
@@ -496,7 +497,7 @@ export class EchartComponent {
   };
 
   //donut chart
-  donut_chart: EChartOption = {
+  donut_chart: EChartsOption = {
     tooltip: {
       trigger: "item",
       formatter: "{a} <br/>{b} : {c} ({d}%)",
@@ -511,7 +512,7 @@ export class EchartComponent {
     toolbox: {
       show: !0,
       feature: {
-        magicType: {
+       /* magicType: {
           show: !0,
           type: ["pie", "funnel"],
           option: {
@@ -522,7 +523,7 @@ export class EchartComponent {
               max: 1548,
             },
           },
-        },
+        },*/
         restore: {
           show: !0,
           title: "Restore",
@@ -538,7 +539,7 @@ export class EchartComponent {
         name: "Access to the resource",
         type: "pie",
         radius: ["35%", "55%"],
-        itemStyle: {
+        /*itemStyle: {
           normal: {
             label: {
               show: !0,
@@ -557,7 +558,7 @@ export class EchartComponent {
               },
             },
           },
-        },
+        },*/
         data: [
           {
             value: 335,

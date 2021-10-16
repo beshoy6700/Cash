@@ -1,5 +1,7 @@
 import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
+import {AuthGuard} from "../core/guard/auth.guard";
+import {Role} from "../core/models/role";
 
 const routes: Routes = [
   {
@@ -9,6 +11,10 @@ const routes: Routes = [
   },
   {
     path: "regions",
+    canActivate: [AuthGuard],
+    data: {
+      role: Role.Admin,
+    },
     loadChildren: () =>
       import("./regions/regions.module").then((m) => m.RegionsModule),
   },

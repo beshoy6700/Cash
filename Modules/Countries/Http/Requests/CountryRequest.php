@@ -4,6 +4,7 @@ namespace Modules\Countries\Http\Requests;
 
 
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
 use Modules\Countries\Entities\Country;
 
@@ -90,9 +91,8 @@ class CountryRequest extends FormRequest
     {
         $errors = $validator->errors(); // Here is your array of errors
         $response = response()->json([
-            'message' => 'Invalid data send',
-            'details' => $errors->messages(),
-        ], 422);
-       // throw new HttpResponseException($response);
+            'message' => $errors->messages(),
+        ], 400);
+        throw new HttpResponseException($response);
     }
 }
