@@ -14,13 +14,13 @@ class Employee extends Model
     use SoftDeletes, Notifiable, LogsActivity;
     protected $table = 'employees';
     protected $fillable = [
-        'code','name','gender','status','date_birth','mobile','collage','address','email','social_status_id','image','user_id'
-    ];
+        'code','name','gender','status','date_birth','mobile','collage','address','email','social_status_id','image','user_id'];
     protected $dates = ['deleted_at'];
     // column to hidden in query
     protected $hidden = [];
     // attributes will save when updated
-    protected static $logAttributes = ['code','name','gender','status','date_birth','mobile','collage','address','email','social_status_id','image','user_id'];
+    protected static $logAttributes = [
+        'code','name','gender','status','date_birth','mobile','collage','address','email','social_status_id','image','user_id'];
     protected static $logOnlyDirty = true;
     //only the `updated` and `deleted` event will get logged automatically
     protected static $recordEvents = ['updated', 'deleted'];

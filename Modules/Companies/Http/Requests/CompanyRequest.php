@@ -2,7 +2,9 @@
 
 namespace Modules\Companies\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Modules\Companies\Entities\Company;
 use Modules\Companies\Http\Enumeration\CompanyType;
 
@@ -63,4 +65,16 @@ class CompanyRequest extends FormRequest
     {
         return true;
     }
+
+          /**
+        *  For Api Validation
+        */
+        public function failedValidation(Validator $validator)
+        {
+            $errors = $validator->errors(); // Here is your array of errors
+            $response = response()->json([
+                'message' => $errors->messages(),
+            ], 400);
+            throw new HttpResponseException($response);
+        }
 }

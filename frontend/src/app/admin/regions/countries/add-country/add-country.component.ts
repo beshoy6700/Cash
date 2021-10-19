@@ -4,6 +4,7 @@ import {MatProgressButtonOptions} from "mat-progress-buttons";
 import {CountriesService} from "../countries.service";
 import {ServerApiService} from "../../../../core/service/server-api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-add-country',
@@ -30,46 +31,47 @@ export class AddCountryComponent implements OnInit {
   hide = true;
   agree = false;
   customForm: FormGroup;
-  errors: [
-    name: string,
-    slug: string,
-    status: boolean
-  ]
+  errors: any[];
+  private readonly notifier: NotifierService;
   constructor(private fb: FormBuilder,
               private services: CountriesService,
               private serverApi: ServerApiService,
-              private snackBar: MatSnackBar
+              private snackBar: MatSnackBar,
+              private notifierService: NotifierService
   ) {
     this.register = this.fb.group({
       name: ["", [Validators.required]],
       slug: ["", [Validators.required]],
       status: ["", [Validators.required]],
     });
+    this.notifier = notifierService;
   }
 
 
-  onRegister() {
-    this.services.create(this.register.value).subscribe(data=>{
-      console.log(data);
-    },error => {
-    this.errors = error;
-    console.log(this.errors);
-    });
-  //  console.log("Form Value", this.register.value);
-
-  }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action);
   }
-  someFunc2(): void {
+  OnSubmit(): void {
     this.barButtonOptions.active = true;
     this.barButtonOptions.text = "جاري حفظ البيانات ...";
-    this.services.create(this.register.value);
+    this.services.create(this.register.value).subscribe(data=>{
+      setTimeout(() => {
+        this.barButtonOptions.active = false;
+        this.barButtonOptions.text = "اضافة";
+        this.notifier.notify('success', ' تم اضافة البيانات بنجاح ');
+
+       // this.openSnackBar('', 'Dance');
+      }, 1500);
+    },error => {
+    this.errors = error;
+    console.log(this.errors);
     setTimeout(() => {
       this.barButtonOptions.active = false;
       this.barButtonOptions.text = "اضافة";
-      this.openSnackBar('تم اضافة البيانات بنجاح', 'Dance');
-    }, 3500);
+      this.notifier.notify('danger', ' حدث خطأ برجاء اعادة المحاولة مره اخري ');
+      //this.openSnackBar(' حدث خطأ برجاء اعادة المحاولة مره اخري', 'اخفاء');
+    }, 1500);
+    });
   }
 
   ngOnInit() {

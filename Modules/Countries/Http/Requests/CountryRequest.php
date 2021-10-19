@@ -86,7 +86,9 @@ class CountryRequest extends FormRequest
         return true;
         //return $this->user()->can('create.countries');
     }
-
+       /**
+        *  For Api Validation
+        */
     public function failedValidation(Validator $validator)
     {
         $errors = $validator->errors(); // Here is your array of errors

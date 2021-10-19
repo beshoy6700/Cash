@@ -2,7 +2,9 @@
 
 namespace Modules\JobStructure\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Modules\JobStructure\Entities\JobStructure;
 use Modules\JobStructure\Http\Enumeration\JobType;
 
@@ -59,4 +61,16 @@ class JobStructureRequst extends FormRequest
     {
         return true;
     }
+
+      /**
+        *  For Api Validation
+        */
+        public function failedValidation(Validator $validator)
+        {
+            $errors = $validator->errors(); // Here is your array of errors
+            $response = response()->json([
+                'message' => $errors->messages(),
+            ], 400);
+            throw new HttpResponseException($response);
+        }
 }

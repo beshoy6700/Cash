@@ -82,7 +82,7 @@ export class SigninComponent implements OnInit {
                   this.router.navigate(["/authentication/signin"]);
                 }
                 this.spinnerButtonOptions.active = false;
-              }, 1000);
+              }, 100);
             } else {
               this.error = "خطأ في تسجيل الدخول";
             }
