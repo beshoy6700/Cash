@@ -15,13 +15,14 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('slug')->nullable();
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
             $table->boolean('status')->default(1)->comment('1 in active 0 not active');
             $table->bigInteger('admin_id')->unsigned();
             $table->foreign('admin_id')->references('id')->on('admins');
+            $table->index('name');
             $table->timestamps();
             $table->softDeletes();
         });

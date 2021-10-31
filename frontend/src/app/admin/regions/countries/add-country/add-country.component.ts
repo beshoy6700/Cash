@@ -61,16 +61,16 @@ export class AddCountryComponent implements OnInit {
         this.notifier.notify('success', ' تم اضافة البيانات بنجاح ');
 
        // this.openSnackBar('', 'Dance');
-      }, 1500);
+      }, 3500);
     },error => {
-    this.errors = error;
+    this.errors = error.errors;
     console.log(this.errors);
     setTimeout(() => {
       this.barButtonOptions.active = false;
       this.barButtonOptions.text = "اضافة";
-      this.notifier.notify('danger', ' حدث خطأ برجاء اعادة المحاولة مره اخري ');
+      this.notifier.notify('error', ' حدث خطأ برجاء اعادة المحاولة مره اخري ');
       //this.openSnackBar(' حدث خطأ برجاء اعادة المحاولة مره اخري', 'اخفاء');
-    }, 1500);
+    }, 3500);
     });
   }
 

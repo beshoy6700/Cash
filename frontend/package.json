@@ -39,6 +39,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "@swimlane/ngx-charts": "^18.0.1",
     "@swimlane/ngx-datatable": "^19.0.0",
+    "@techiediaries/ngx-qrcode": "^9.1.0",
     "@types/d3-shape": "^2.0.0",
     "acorn": "^8.2.4",
     "ag-grid-angular": "^25.3.0",
