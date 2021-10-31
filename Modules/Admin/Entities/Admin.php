@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Modules\Admin\Database\factories\AdminFactory;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
@@ -52,6 +53,11 @@ class Admin extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    /** @return AdminFactory */
+    protected static function newFactory()
+    {
+        return AdminFactory::new();
+    }
     /**
      * Get the user's date of birth.
      *

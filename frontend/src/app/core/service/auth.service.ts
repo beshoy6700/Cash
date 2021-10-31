@@ -5,6 +5,7 @@ import {map} from "rxjs/operators";
 import {User} from "../models/user";
 import {environment} from "src/environments/environment";
 import {TokenService} from "./token.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: "root",
@@ -14,7 +15,7 @@ export class AuthService {
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient,
-              private token: TokenService) {
+              private token: TokenService, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem("currentUser"))
     );
@@ -47,7 +48,9 @@ export class AuthService {
   logout() {
     // remove user from local storage to log user out
     this.token.removeUser('currentUser');
+    this.token.removeToken();
     this.currentUserSubject.next(null);
+   // this.router.navigate(["/authentication/signin"]);
     return of({success: false});
   }
 }

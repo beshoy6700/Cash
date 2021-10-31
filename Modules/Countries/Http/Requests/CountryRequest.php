@@ -93,7 +93,7 @@ class CountryRequest extends FormRequest
     {
         $errors = $validator->errors(); // Here is your array of errors
         $response = response()->json([
-            'message' => $errors->messages(),
+            'errors' => $errors, //$errors->messages(),
         ], 400);
         throw new HttpResponseException($response);
     }

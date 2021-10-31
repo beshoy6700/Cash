@@ -59,7 +59,7 @@ private rowHeight;
         console.log(this.countries);
         //  this.rows = this.countries;
       },(error) =>{
-      console.log(error);
+      console.log(error.errors);
       }
     );
   }

@@ -2,6 +2,7 @@
 namespace Modules\Admin\Database\factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Admin\Entities\Admin;
 
 class AdminFactory extends Factory
 {
@@ -10,7 +11,7 @@ class AdminFactory extends Factory
      *
      * @var string
      */
-    protected $model = \Modules\Admin\Entities\Admin::class;
+    protected $model = Admin::class;
 
     /**
      * Define the model's default state.

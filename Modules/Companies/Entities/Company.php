@@ -3,16 +3,18 @@
 namespace Modules\Companies\Entities;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Modules\Areas\Entities\Area;
 use Modules\Cities\Entities\City;
+use Modules\Companies\Database\factories\CompanyFactory;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Company extends Model
 {
-    use SoftDeletes, Notifiable, LogsActivity;
+    use SoftDeletes, Notifiable, LogsActivity, HasFactory;
 
     protected $table = 'companies';
     protected $fillable = [
@@ -31,6 +33,12 @@ class Company extends Model
     protected $casts = [
         'status' => 'boolean',
     ];
+
+    /** @return CompanyFactory */
+    protected static function newFactory()
+    {
+        return CompanyFactory::new();
+    }
     ##### Scope #######
     public function scopeActive($query)
     {

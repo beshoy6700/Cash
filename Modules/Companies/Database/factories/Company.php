@@ -12,7 +12,7 @@ $factory->define(Company::class, function (Faker $faker) {
         'status' => $faker->boolean(),
         'mobile' => $faker->phoneNumber,
         'logo' => $faker->imageUrl(),
-        'user_id' => 1
+        'admin_id' => 1
         //    'admin_id' => mt_rand(1, 50)
     ];
 });

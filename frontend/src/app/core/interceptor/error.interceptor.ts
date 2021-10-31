@@ -28,8 +28,8 @@ export class ErrorInterceptor implements HttpInterceptor {
           location.reload(true);
 
         }
-
-        const error = err.error.message || err.statusText || err.error.errors;
+        const error = err.error;
+     //   const error = err.error.message || err.statusText || err.error.errors;
         return throwError(error);
       })
     );
