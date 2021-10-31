@@ -35,6 +35,7 @@ import {AgGridModule} from "ag-grid-angular";
 import {AccordionModule} from "primeng/accordion";
 import {LAZYLOAD_IMAGE_HOOKS, LazyLoadImageModule, ScrollHooks } from "ng-lazyload-image";
 import { NotifierModule } from "angular-notifier";
+import {NgxQRCodeModule} from "@techiediaries/ngx-qrcode";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -75,6 +76,7 @@ export function createTranslateLoader(http: HttpClient): any {
     NotifierModule.withConfig({
       // Custom options in here
     }),
+    NgxQRCodeModule,
     // core & shared
     CoreModule,
     SharedModule,

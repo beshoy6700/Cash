@@ -3,6 +3,7 @@ import {environment} from "../../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {CountriesService} from "../countries.service";
 import {Observable} from "rxjs";
+import {Country} from "../Country";
 
 
 @Component({
@@ -13,7 +14,7 @@ import {Observable} from "rxjs";
 export class AllCountriesComponent implements OnInit {
   private readonly API_URL = `${environment.apiUrl}/admin/countries/list`;
 private rowHeight;
-  countries: any[];
+  countries: Country[];
   rows = [];
   tableStyle = 'bootstrap';
   columns = [
@@ -54,6 +55,8 @@ private rowHeight;
   loadData() {
     this.service.getAll().subscribe((data) => {
         this.rowData = data.countries;
+
+        console.log(this.countries);
         //  this.rows = this.countries;
       },(error) =>{
       console.log(error);
